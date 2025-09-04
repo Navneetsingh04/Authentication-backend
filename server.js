@@ -9,7 +9,7 @@ import { errorMiddleWare } from "./middleware/error.middleware.js";
 
 
 import userRouter from "./routes/user.route.js"
-
+import { unverifiedAccounts } from "./automation/removeUnverifiedAccounts.js";
 const app = express();
 const PORT = process.env.PORT;
 
@@ -29,6 +29,7 @@ app.use("/api/user",userRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is Running on PORT : ${PORT}`);
+  unverifiedAccounts()
   connectDB();
 });
 
