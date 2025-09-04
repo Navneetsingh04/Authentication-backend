@@ -1,4 +1,4 @@
-export const generateEmailTemplate = (verificationCode,name) => {
+export const generateEmailTemplate = (verificationCode, name) => {
   return `
   <!DOCTYPE html>
   <html lang="en">
@@ -85,5 +85,85 @@ export const generateEmailTemplate = (verificationCode,name) => {
     </div>
   </body>
   </html>
+  `;
+};
+
+export const forgotPasswordEmail = (resetPasswordUrl, name) => {
+  return `
+  <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reset Your Password</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f7;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #ffffff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      }
+      .header {
+        background: #0970e4ff;
+        color: white;
+        text-align: center;
+        padding: 20px;
+      }
+      .content {
+        padding: 30px;
+        color: #333333;
+        line-height: 1.6;
+      }
+      .button {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 20px;
+        background: #0d75ecff;
+        color: #ffffff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+      }
+      .plain-link {
+        margin-top: 20px;
+        font-size: 14px;
+        color: #555;
+        word-break: break-word;
+      }
+      .footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 12px;
+        color: #888888;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Password Reset Request</h2>
+      </div>
+      <div class="content">
+        <p>Hi ${name},</p>
+        <p>You recently requested to reset your password. Click the button below to set a new one:</p>
+        <a href="${resetPasswordUrl}" class="button">Reset Password</a>
+        <p>If the button above doesn’t work, copy and paste the URL below into your browser:</p>
+        <p class="plain-link">${resetPasswordUrl}</p>
+        <p>If you did not request this, you can safely ignore this email. Your account will remain secure.</p>
+        <p>This link will expire in <strong>15 minutes</strong>.</p>
+      </div>
+      <div class="footer">
+        <p>© ${new Date().getFullYear()} Navneet Singh. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
   `;
 };
