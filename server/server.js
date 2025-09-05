@@ -27,6 +27,21 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/user",userRouter);
 
+app.get("/", (req, res) => {
+  res.send("Server is running....");
+});
+
+app.get("/api/healthchecker", (req, res) => {
+  res.json({ status: "success", message: "API is working perfectly" });
+});
+
+app.all("*", (req, res) => {
+  res.status(404).json({
+    status: "fail",
+    message: `Route not found`,
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Server is Running on PORT : ${PORT}`);
   unverifiedAccounts()
